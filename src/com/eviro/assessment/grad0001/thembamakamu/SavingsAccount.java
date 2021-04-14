@@ -67,9 +67,11 @@ public class SavingsAccount implements AccountService {
                 //if reached end of loop and account not found
                 if (i == accounts.size() - 1 && !accFound){
 
-                    Object accountNotFoundException = new Exception("Account Not Found");
+//                    Object accountNotFoundException = new Exception("Account Not Found");
+//
+//                    throw (Throwable) accountNotFoundException;
 
-                    throw (Throwable) accountNotFoundException;
+                    throw new AccNotFound("Account Not Found");
 
                 }
 
@@ -83,7 +85,8 @@ public class SavingsAccount implements AccountService {
 
                 if ((savingsAccount.getBalance().subtract(amountToWithdraw)).compareTo(new BigDecimal(1000)) < 0){
 
-                    System.out.println("You Cannot Withdraw The Requested Amount");
+                    //System.out.println("You Cannot Withdraw The Requested Amount");
+                    throw new WithdrawAmountExceed("You Cannot Withdraw The Requested Amount");
 
                 }else if ((savingsAccount.getBalance().subtract(amountToWithdraw)).compareTo(new BigDecimal(1000)) >= 0){
 

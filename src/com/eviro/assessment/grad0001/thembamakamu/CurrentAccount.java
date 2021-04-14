@@ -73,9 +73,11 @@ public class CurrentAccount implements AccountService {
                 //if reached end of loop and account not found
                 if (i == accounts.size() - 1 && !accFound){
 
-                    Object accountNotFoundException = new Exception("Account Not Found");
+                    //Object accountNotFoundException = new Exception("Account Not Found");
 
-                    throw (Throwable) accountNotFoundException;
+                    AccNotFound accNotFound = new AccNotFound("Account Not Found");
+
+                    throw  accNotFound;
 
                 }
 
@@ -91,7 +93,11 @@ public class CurrentAccount implements AccountService {
                 //if limit exceeded
                 if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) >= 0){
 
-                    System.out.println("You have exceeded your balance and overdraft limit.");
+//                    System.out.println("You have exceeded your balance and overdraft limit.");
+
+                    WithdrawAmountExceed withdrawAmountExceed = new WithdrawAmountExceed("You have exceeded your balance and overdraft limit.");
+
+                    throw withdrawAmountExceed;
 
                 }else if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) < 0){ // limit not exceeded
 
