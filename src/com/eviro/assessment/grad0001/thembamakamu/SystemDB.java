@@ -7,6 +7,7 @@ public class SystemDB{
 
     private static SystemDB mInstance;
     private static ArrayList<CurrentAccount> data;
+    private static ArrayList<SavingsAccount> savingsAccounts;
 
     private SystemDB(){
 
@@ -24,7 +25,7 @@ public class SystemDB{
 
     }
 
-    public static ArrayList<CurrentAccount> dummyData(){
+    public static ArrayList<CurrentAccount> currentAccountData(){
 
        SystemDB.data = new ArrayList<>();
 
@@ -34,6 +35,17 @@ public class SystemDB{
                 new BigDecimal(20000)));
 
         return data;
+
+    }
+
+    public static ArrayList<SavingsAccount> savingsAccountData(){
+
+        SystemDB.savingsAccounts = new ArrayList<>();
+
+        SystemDB.savingsAccounts.add(new SavingsAccount(101,"1",new BigDecimal(2000)));
+        SystemDB.savingsAccounts.add(new SavingsAccount(102,"2",new BigDecimal(5000)));
+
+        return SystemDB.savingsAccounts;
 
     }
 

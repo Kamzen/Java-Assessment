@@ -26,6 +26,10 @@ public class CurrentAccount implements AccountService {
         return id;
     }
 
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     public String getAccountNum() {
         return accountNum;
     }
@@ -44,7 +48,7 @@ public class CurrentAccount implements AccountService {
     public void withdraw(String accountNum, BigDecimal amountToWithdraw) {
 
         //ArryList Which Will Hold Objects Of CurrentAccount
-        ArrayList<CurrentAccount> accounts = SystemDB.dummyData();
+        ArrayList<CurrentAccount> accounts = SystemDB.currentAccountData();
 
         //Try and Catch Block To Handle The Account Not Found Error At Runtime
 
@@ -92,6 +96,7 @@ public class CurrentAccount implements AccountService {
                 }else if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) < 0){ // limit not exceeded
 
                     System.out.println("Withdrawal Success Of R" + amountToWithdraw);
+                    currentAccount.setBalance((overdraftLimit.add(currentAccount.getBalance()).subtract(amountToWithdraw)));
 
                 }
 
