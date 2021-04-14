@@ -6,19 +6,22 @@ import java.util.ArrayList;
 
 public class CurrentAccount implements AccountService {
 
+    //Class Fields
     private int id;
     private String accountNum;
     private BigDecimal balance,overdraft;
-    private Object AccountNotFoundException;
 
+    //Constructor to populate the object db
     public CurrentAccount(int id, String accountNum, BigDecimal balance, BigDecimal overdraft) {
         this.id = id;
         this.accountNum = accountNum;
         this.balance = balance;
         this.overdraft = overdraft;
     }
+    //Non-default constructor used to call the with implemented interface method withdraw()
     public CurrentAccount(){};
 
+    //Mutators And Accessors Methods
     public int getId() {
         return id;
     }
@@ -35,20 +38,27 @@ public class CurrentAccount implements AccountService {
         return overdraft;
     }
 
+    //Withdraw method
+
     @Override
     public void withdraw(String accountNum, BigDecimal amountToWithdraw) {
 
+        //ArryList Which Will Hold Objects Of CurrentAccount
         ArrayList<CurrentAccount> accounts = SystemDB.dummyData();
 
-
+        //Try and Catch Block To Handle The Account Not Found Error At Runtime
 
         try {
 
+            //Boolen variable to check if the account number is found the objects of array
             boolean accFound = false;
+            //Index to used to access the current account in set of CurrentAccount Objects(ArrayList)
             int accIndex = -1;
 
+            //For loop to traverse
             for (int i = 0; i < accounts.size(); i++){
 
+                //if account number found
                 if (accounts.get(i).getAccountNum().equals(accountNum)){
 
                     accFound = true;
@@ -56,27 +66,30 @@ public class CurrentAccount implements AccountService {
                     break;
 
                 }
+                //if reached end of loop and account not found
                 if (i == accounts.size() - 1 && !accFound){
 
-                    AccountNotFoundException = new Exception("Account Not Found");
+                    Object accountNotFoundException = new Exception("Account Not Found");
 
-                    throw (Throwable) AccountNotFoundException;
+                    throw (Throwable) accountNotFoundException;
 
                 }
 
             }
 
+            //if account found
             if (accFound){
 
                 CurrentAccount currentAccount = accounts.get(accIndex);
 
                 BigDecimal overdraftLimit = new BigDecimal(100000);
 
+                //if limit exceeded
                 if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) < 0){
 
                     System.out.println("You have exceeded your balance and overdraft limit.");
 
-                }else{
+                }else{ // limit not exceeded
 
                     
 
