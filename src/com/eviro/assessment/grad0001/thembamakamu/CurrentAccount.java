@@ -58,6 +58,8 @@ public class CurrentAccount implements AccountService {
                 }
                 if (i == accounts.size() - 1 && !accFound){
 
+                    AccountNotFoundException = new Exception("Account Not Found");
+
                     throw (Throwable) AccountNotFoundException;
 
                 }
