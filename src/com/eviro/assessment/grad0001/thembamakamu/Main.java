@@ -10,7 +10,7 @@ public class Main {
 
         CurrentAccount currentAccount = new CurrentAccount();
 
-        currentAccount.withdraw("6",new BigDecimal(1000));
+        currentAccount.withdraw("3",new BigDecimal(1000000));
 
     }
 

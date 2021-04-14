@@ -82,16 +82,16 @@ public class CurrentAccount implements AccountService {
 
                 CurrentAccount currentAccount = accounts.get(accIndex);
 
-                BigDecimal overdraftLimit = new BigDecimal(100000);
+                BigDecimal overdraftLimit = currentAccount.getOverdraft();
 
                 //if limit exceeded
-                if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) < 0){
+                if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) >= 0){
 
                     System.out.println("You have exceeded your balance and overdraft limit.");
 
-                }else{ // limit not exceeded
+                }else if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) < 0){ // limit not exceeded
 
-                    
+                    System.out.println("Withdrawal Success Of R" + amountToWithdraw);
 
                 }
 
