@@ -48,7 +48,7 @@ public class CurrentAccount implements AccountService {
     public void withdraw(String accountNum, BigDecimal amountToWithdraw) {
 
         //ArryList Which Will Hold Objects Of CurrentAccount
-        ArrayList<CurrentAccount> accounts = SystemDB.currentAccountData();
+        ArrayList<CurrentAccount> accounts = SystemDB.getInstance().currentAccountData();
 
         //Try and Catch Block To Handle The Account Not Found Error At Runtime
 
@@ -95,9 +95,7 @@ public class CurrentAccount implements AccountService {
 
 //                    System.out.println("You have exceeded your balance and overdraft limit.");
 
-                    WithdrawAmountExceed withdrawAmountExceed = new WithdrawAmountExceed("You have exceeded your balance and overdraft limit.");
-
-                    throw withdrawAmountExceed;
+                    throw new WithdrawAmountExceed("You have exceeded your balance and overdraft limit.");
 
                 }else if (amountToWithdraw.compareTo(overdraftLimit.add(currentAccount.getBalance())) < 0){ // limit not exceeded
 

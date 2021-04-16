@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SystemDB.currentAccountData();
-        SystemDB.savingsAccountData();
+        SystemDB.getInstance().currentAccountData();
+        SystemDB.getInstance().savingsAccountData();
 
         Scanner kb = new Scanner(System.in);
 

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class SystemDB{
 
     private static SystemDB mInstance;
-    private static ArrayList<CurrentAccount> data;
-    private static ArrayList<SavingsAccount> savingsAccounts;
+    private ArrayList<CurrentAccount> data;
+    private ArrayList<SavingsAccount> savingsAccounts;
 
     private SystemDB(){
 
@@ -25,27 +25,27 @@ public class SystemDB{
 
     }
 
-    public static ArrayList<CurrentAccount> currentAccountData(){
+    public ArrayList<CurrentAccount> currentAccountData(){
 
-       SystemDB.data = new ArrayList<>();
+       this.data = new ArrayList<>();
 
-       SystemDB.data.add(new CurrentAccount(103,"3",new BigDecimal(1000),
+       this.data.add(new CurrentAccount(103,"3",new BigDecimal(1000),
                new BigDecimal(10000)));
-        SystemDB.data.add(new CurrentAccount(104,"4",new BigDecimal(-5000),
+        this.data.add(new CurrentAccount(104,"4",new BigDecimal(-5000),
                 new BigDecimal(20000)));
 
-        return data;
+        return this.data;
 
     }
 
-    public static ArrayList<SavingsAccount> savingsAccountData(){
+    public ArrayList<SavingsAccount> savingsAccountData(){
 
-        SystemDB.savingsAccounts = new ArrayList<>();
+        this.savingsAccounts = new ArrayList<>();
 
-        SystemDB.savingsAccounts.add(new SavingsAccount(101,"1",new BigDecimal(2000)));
-        SystemDB.savingsAccounts.add(new SavingsAccount(102,"2",new BigDecimal(5000)));
+        this.savingsAccounts.add(new SavingsAccount(101,"1",new BigDecimal(2000)));
+        this.savingsAccounts.add(new SavingsAccount(102,"2",new BigDecimal(5000)));
 
-        return SystemDB.savingsAccounts;
+        return this.savingsAccounts;
 
     }
 
